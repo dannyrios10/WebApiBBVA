@@ -1,0 +1,11 @@
+{
+    "/login/*": {
+        "target": "https://bbvaservicedan.herokuapp.com",
+        "secure": false,
+        "changeOrigin": true
+    }, "/clientes/*": {
+        "target": "https://bbvaservicedan.herokuapp.com",
+        "secure": false,
+        "changeOrigin": true
+    }
+}

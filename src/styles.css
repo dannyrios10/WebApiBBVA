@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+h3{
+    color: white;
+}
+
+.btn-outline-light:hover{
+ color: white;
+}
+
+.azul{
+    background-color: #002E61;
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.table{
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.arial{
+    font-family: Helvetica, sans-serif;
+}

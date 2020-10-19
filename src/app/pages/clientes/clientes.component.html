@@ -1,0 +1,164 @@
+<div class="image-container set-full-height" style="background-image: url('https://firebasestorage.googleapis.com/v0/b/bbva-proyecto.appspot.com/o/hero-bg.jpg?alt=media&token=821050a3-782f-4822-9642-2d23c857b8a9')">
+    <!--   Creative Tim Branding   -->
+    <a href="http://creative-tim.com">
+         <div class="logo-container">
+            <div class="logo">
+                <img src="assets/img/new_logo.png">
+            </div>
+            <div class="brand">
+                Bienvenido {{usuario.email}}
+            </div>
+        </div>
+    </a>
+
+    <!--  Made With Get Shit Done Kit  -->
+		<button (click)="logout()" class="made-with-mk">
+			<div class=" white brand"><i class=" m-l-7 white zmdi zmdi-power-off"></i></div>
+			<div class="white made-with">Cerrar sesión</div>
+        </button>
+
+    
+
+    <!--   Big container   -->
+    <div class="container">
+        <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+
+     
+
+            <!--      Wizard container        -->
+            <div class="wizard-container">
+
+                
+                
+
+                <div class="card wizard-card" data-color="orange" id="wizardProfile">
+
+                <form>
+                
+                <!--        You can switch ' data-color="orange" '  with one of the next bright colors: "blue", "green", "orange", "red"          -->
+
+                    	<div class="wizard-header">
+                        	<h3>
+                        	   <img src="https://firebasestorage.googleapis.com/v0/b/bbva-proyecto.appspot.com/o/logo.png?alt=media&token=98aaaf8a-f3ca-4cae-b55d-2debff58dda1" width="100px" alt=""> Cliente/Service <br>
+                        	   <small class="white">Busca la información de un cliente proporcionando ID de Cliente.</small>
+                        	</h3>
+                        </div>
+
+                        <nav class="navbar navbar-light blue">
+                            <form class="form-inline"
+                                  (ngSubmit)="buscarCliente()"
+                                   autocomplete="off"
+                                   [formGroup]="clienteForm">
+                              <input class="form-control mr-sm-2"
+                                     type="search" 
+                                     placeholder="ID CLIENTE" 
+                                     aria-label="Search"
+                                     name="search"
+                                     formControlName="search"
+                                     >
+                              <button class="white btn btn-outline-light my-2 my-sm-0" type="submit">Buscar</button>
+                            </form>
+                          </nav>
+
+                          <div *ngIf="campoNoValido('search')" class="navbar">
+                              <h5 class="white">**Porporcione un ID válido</h5>
+                          </div>
+
+                          <div *ngIf="cargando" class="navbar m-t-50">
+                              <div class="spinner-border text-primary" role="status">
+                                <span class="sr-only">Loading...</span>
+                              </div>
+                          </div>
+
+                        
+                          <div *ngIf="!cargando || clientes == []" class="col md-col-4">
+                              <div class="col">
+      
+                                  <div *ngFor="let cliente of clientes" class="card border-primary mb-3" style="max-width: 70rem;">
+                                      <div *ngIf="!cargando" class=" white card-header">ID del cliente: {{clientes[0]._id}} </div>
+                                      <div class="card-body text-primary">
+                                        <h5 *ngIf="usuario.role == 'ADMIN_ROLE'  && !cargando" class="white card-title">Informacón de su cuenta</h5>
+                                        <table *ngIf="usuario.role == 'ADMIN_ROLE' && !cargando" class="white table">
+                                            <tbody>
+                                            <tr>
+                                                <th scope="row">Nombre: </th>
+                                                <td class="arial">{{clientes[0].firstname}}</td>
+                                                </tr>
+                                                <tr>
+                                                 <th scope="row">Apellido: </th>
+                                                <td class="arial">{{clientes[0].lastname}}</td>
+                                              </tr>
+                                              <tr>
+                                                <th scope="row">Número de Cliente: </th>
+                                                <td class="arial">{{clientes[0].identifier}}</td>
+                                              </tr>
+                                              <tr>
+                                                <th scope="row">No. Tarjeta: </th>
+                                                <td class="arial">{{clientes[0].code}}</td>
+                                              </tr>
+                                              <tr>
+                                                <th scope="row">Departamento: </th>
+                                                <td class="arial">{{clientes[0].department}}</td>
+                                              </tr>
+                                              <tr>
+                                                <th scope="row">Telefono: </th>
+                                                <td class="arial">{{clientes[0].telefono}}</td>
+                                              </tr>
+                                              <tr>
+                                                <th scope="row">Email: </th>
+                                                <td class="arial">{{clientes[0].email}}</td>
+                                              </tr>
+                                              <tr>
+                                                <th scope="row">Password: </th>
+                                                <td class="arial">{{clientes[0].password}}</td>
+                                              </tr>
+                                              <tr>
+                                                <th scope="row">Rol: </th>
+                                                <td class="arial">{{clientes[0].role | lowercase}}</td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
+
+                                          <table *ngIf="usuario.role == 'USER_ROLE'  && !cargando" class="white table">
+                                            <tbody>
+                                              <tr>
+                                                <th scope="row">Nombre: </th>
+                                                <td class="arial">{{clientes[0].firstname}}</td>
+                                              </tr>
+                                              <tr>
+                                                <th scope="row">Apellido: </th>
+                                                <td class="arial">{{clientes[0].lastname}}</td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
+                                    
+                                      </div>
+                                  </div>
+
+                                    <div *ngIf="clientes !== []">
+                                        <div *ngIf=" clientes.length > 0 && usuario.role == 'ADMIN_ROLE'  && !cargando " class="card">
+                                          <div class="white card-body text-center">
+                                            Registros sin llenar: {{campos}}
+                                          </div>
+                                        </div>
+                                    </div>
+
+
+                                 
+                                
+                              </div>
+                          </div>
+
+                         
+                        
+                        </form>
+                </div>
+            </div> <!-- wizard container -->
+        </div>
+        </div><!-- end row -->
+    </div> <!--  big container -->
+
+
+
+</div>

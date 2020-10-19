@@ -1,0 +1,59 @@
+<div class="limiter">
+    <div class="container-login100" style="background-image: url('https://firebasestorage.googleapis.com/v0/b/bbva-proyecto.appspot.com/o/hero-bg.jpg?alt=media&token=821050a3-782f-4822-9642-2d23c857b8a9');">
+        <div class="wrap-login100">
+            <form class="login100-form validate-form"
+                  (ngSubmit)="loginUsuario()"
+                  autocomplete="off"
+                  [formGroup]="loginForm">
+                <span class="login100-form-logo">
+                    <i class="blue zmdi zmdi-account-circle"></i>
+                </span>
+                
+                <span class="login100-form-title p-b-34 p-t-27">
+                    <img src="https://firebasestorage.googleapis.com/v0/b/bbva-proyecto.appspot.com/o/logo.png?alt=media&token=98aaaf8a-f3ca-4cae-b55d-2debff58dda1" width="100px" alt="">
+                </span>
+
+                <div class="wrap-input100 validate-input" data-validate = "Enter username">
+                    <input class="input100" 
+                           type="text" 
+                           name="email" 
+                           placeholder="Usuario"
+                           formControlName="email">
+                    <span class="focus-input100" data-placeholder="&#xf207;"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input" data-validate="Enter password">
+                    <input class="input100"
+                         type="password"
+                          name="password" 
+                          placeholder="Password"
+                          formControlName="password">
+                    <span class="focus-input100" data-placeholder="&#xf191;"></span>
+                </div>
+
+
+                <div class="container-login100-form-btn">
+                    <button class="login100-form-btn">
+                        Login
+                    </button>
+                </div>
+
+                <div class="row">
+                    <div class="col  text-center m-3">
+                        <p *ngIf="campoNoValido('email')" class="white"> **El correo de usuario es obligatorio</p>
+                        <p *ngIf="campoNoValido('password')" class="white"> **El password de usuario es obligatorio</p>
+                    </div>
+                </div>
+
+                <div class="text-center p-t-90">
+                    <a class="txt1" href="#">
+                        Forgot Password?
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div id="dropDownSelect1"></div>
